@@ -7,7 +7,7 @@ import Movies from './Components/Movies/Movies';
 function App() {
   return (
     <div >
-     {/* <Header></Header> */}
+     <Header></Header>
     <Home></Home>
     </div>
   );

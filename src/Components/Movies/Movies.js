@@ -22,7 +22,7 @@ const Movies = () => {
     })
     console.log(arr);
     return (
-        <div className='grid grid-cols-3 gap-4'>
+        <div className='grid grid-cols-3 gap-4 mt-28'>
             {
                 arr?.map((m)=> <Movie
                 key={m.id}
