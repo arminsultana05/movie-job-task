@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Home = () => {
+const Home = ({x}) => {
+    console.log(x);
     return (
         <div>
             
