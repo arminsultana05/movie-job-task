@@ -1,10 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { api } from '../../App';
+import SearchMovie from '../SearchMovie';
+import FilterMovie from './FilterMovie';
 import Movie from './Movie';
 
 const Movies = () => {
     const [movie, setMovie] = useState([])
     const [search, setSearch] = useState([])
+    const [pageCount, setPageCount] = useState(0)
     const dataObject = useContext(api)
     const { searcValue, date } = dataObject;
     useEffect(() => {
@@ -12,6 +15,17 @@ const Movies = () => {
             .then(res => res.json())
             .then(data => setMovie(data))
     })
+    useEffect(() => {
+        fetch(" https://movie-task.vercel.app/api/popular?page=1")
+            .then(res => res.json())
+            .then(data => {
+                const count = data?.data?.results?.length
+                console.log(count);
+                const page = Math.ceil(count / 6)
+                setPageCount(page)
+            })
+    })
+    console.log(movie);
 
     const arr = movie?.data?.results?.filter((item) => {
         let popular = 0;
@@ -40,28 +54,28 @@ const Movies = () => {
 
 
     })
-    console.log(filterMovie);
+    // console.log(movie);
     return (
-        <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 mt-28 mid-container'>
-            {
-                 filterMovie?.length > 0 &&
-                 (filterMovie?.map((m) => <Movie
-                     key={m.id}
-                     m={m}></Movie>)) 
+       <>
+            <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 mt-28 mid-container">
+                {
+                    filterMovie?.length > 0 &&
+                    (filterMovie?.map((m) => <FilterMovie
+                        key={m.id}
+                        m={m}></FilterMovie>))
 
 
-            }
+                }
 
-
-            {
-               
-
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 mt-28 mid-container">
+                {
 
                     searcValue !== "" ?
                         (
-                            search?.map((m) => <Movie
+                            search?.map((m) => <SearchMovie
                                 key={m.id}
-                                m={m}></Movie>)
+                                m={m}></SearchMovie>)
                         ) :
                         (
                             arr?.map((m) => <Movie
@@ -69,14 +83,28 @@ const Movies = () => {
                                 m={m}></Movie>)
                         )
 
-            }
-            {
+                }
+            </div>
+
+
+
+            {/* <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 mt-28 mid-container">  {
                 arr?.map((m) => <Movie
                     key={m.id}
                     m={m}></Movie>)
-            }
+            }</div> */}
 
-        </div>
+
+
+
+
+            <div className="">
+                {
+                    [...Array(pageCount).keys()].map(num => <button>{num}</button>)
+                }
+            </div>
+
+            </>
     );
 };
 
