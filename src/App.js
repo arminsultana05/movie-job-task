@@ -5,6 +5,7 @@ import './App.css';
 import Header from './Components/Header/Header';
 import Home from './Components/Home/Home';
 import MovieDetails from './Components/MovieDetails/MovieDetails';
+import FilterMovie from './Components/Movies/FilterMovie';
 import Movies from './Components/Movies/Movies';
 const api = createContext()
 function App() {
@@ -24,6 +25,7 @@ function App() {
         {/* <Home></Home> */}
         <Routes>
           <Route path='/' element={<Home></Home>}></Route>
+       
           <Route path='/movie-details/:detailsId' element={<MovieDetails></MovieDetails>}></Route>
         </Routes>
       </api.Provider>

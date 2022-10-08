@@ -3,7 +3,7 @@ import { api } from '../../App';
 import SearchMovie from '../SearchMovie';
 import FilterMovie from './FilterMovie';
 import Movie from './Movie';
-
+import './Movies.css'
 const Movies = () => {
     const [movie, setMovie] = useState([])
     const [search, setSearch] = useState([])
@@ -21,7 +21,7 @@ const Movies = () => {
             .then(data => {
                 const count = data?.data?.results?.length
                 console.log(count);
-                const page = Math.ceil(count / 6)
+                const page = Math.ceil(count / 3)
                 setPageCount(page)
             })
     })
@@ -98,9 +98,11 @@ const Movies = () => {
 
 
 
-            <div className="">
+            <div className="pagination mid-container w-full flex justify-center">
                 {
-                    [...Array(pageCount).keys()].map(num => <button>{num}</button>)
+                    [...Array(pageCount).keys()].map(num => 
+                       <span className=''> <button>{num+1}
+                       </button></span>  )
                 }
             </div>
 
