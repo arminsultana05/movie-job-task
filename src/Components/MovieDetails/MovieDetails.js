@@ -11,8 +11,8 @@ const MovieDetails = () => {
         .then(data=> setDetails(data))
 
     },[])
-
-    console.log(details?.data?.title);
+    
+    // console.log(details?.data);
     return (
         <div>
             <h1>Movies Name:{details?.data?.title} </h1>

@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { api } from '../../App';
 import "./Movie.css"
 
 const Movie = ({ m }) => {
+    
+   
     const {id, original_title, overview, popularity, poster_path, release_date
         , title, vote_average, vote_count
     } = m;
@@ -14,6 +17,16 @@ const Movie = ({ m }) => {
 
 
     }
+    
+    // console.log(search);
+    // const searchMovie = useMemo(async()=>{
+    //    const url= fetch(` https://movie-task.vercel.app/api/search?page=1&query=${dataObject.searcValue}`)
+    //    const result = await url
+    //    return result;
+        
+    // },[dataObject.searcValue])
+    // console.log(searchMovie);
+
     return (
         <div onClick={()=>navigateToMoviesDetails(id)} className="container">
              <div class="box">

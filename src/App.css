@@ -3,7 +3,12 @@
 @tailwind components;
 @tailwind utilities;
 
-
+.mid-container {
+  /* padding: 3rem 10%; */
+  max-width: 1400px;
+  margin: auto;
+  padding: 1rem;
+}
 .App {
   text-align: center;
 }
@@ -40,5 +45,10 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+@media only screen and (max-width: 990px) {
+  .mid-container {
+    padding: 1rem;
   }
 }
