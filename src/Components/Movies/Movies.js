@@ -20,7 +20,7 @@ const Movies = () => {
             }
 
     })
-    console.log(arr);
+    // console.log(arr);
     return (
         <div className='grid grid-cols-3 gap-4 mt-28'>
             {

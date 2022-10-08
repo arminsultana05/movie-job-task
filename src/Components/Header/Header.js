@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Home from '../Home/Home';
 
 const Header = () => {
@@ -23,13 +24,16 @@ const Header = () => {
         })
         // console.log( arr);
     return (
-        <div class="navbar bg-base-100 w-full">
+     <div className="">
+           <div class="navbar bg-base-100 w-full">
             <div class="flex-1">
                 <a class="btn btn-ghost normal-case text-xl ml-10 text-green-700 text-2xl font-bold">BIP MOVIES</a>
+            <a className='text-lg font-bold ml-10' > <Link to='/'>Home</Link></a>
             </div>
             <div class="form-control mr-10 w-1/2 ">
                 <div class="input-group">
                     <input  onChange={(e) => setQuery(e.target.value)}  type="text" placeholder="Search Movies…" class="input input-bordered w-full" />
+                    
                     <button class="btn btn-square">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                     </button>
@@ -69,6 +73,8 @@ const Header = () => {
                 </div>
             </div>
         </div>
+       
+     </div>
     );
 };
 

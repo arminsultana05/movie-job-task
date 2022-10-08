@@ -1,20 +1,28 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import "./Movie.css"
 
 const Movie = ({ m }) => {
-    const { original_title, overview, popularity, poster_path, release_date
+    const {id, original_title, overview, popularity, poster_path, release_date
         , title, vote_average, vote_count
     } = m;
+    const navigate = useNavigate();
     const img = `https://image.tmdb.org/t/p/original/${poster_path}`
+
+    const navigateToMoviesDetails=(id)=>{
+        navigate(`/movie-details/${id}`)
+
+
+    }
     return (
-        <div className="container">
+        <div onClick={()=>navigateToMoviesDetails(id)} className="container">
              <div class="box">
             <div class="imgBox">
                 <img src={img}alt=""/>
             </div>
             <div class="content text-left">
                 <p className='text-white font-Bebas Neue text-xl'>
-                 Name: {title}
+                Title: {title}
                     </p>
                    
                 <p className='text-white font-Bebas Neue text-xl'>
