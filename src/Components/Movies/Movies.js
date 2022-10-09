@@ -7,7 +7,9 @@ import './Movies.css'
 const Movies = () => {
     const [movie, setMovie] = useState([])
     const [search, setSearch] = useState([])
-    const [pageCount, setPageCount] = useState(0)
+    const [pageCount, setPageCount] = useState(1)
+    const [page, setPage]= useState(0)
+    const [size , setSize] =useState(3)
     const dataObject = useContext(api)
     const { searcValue, date } = dataObject;
     useEffect(() => {
@@ -16,16 +18,17 @@ const Movies = () => {
             .then(data => setMovie(data))
     })
     useEffect(() => {
-        fetch(" https://movie-task.vercel.app/api/popular?page=1")
+        fetch(` https://movie-task.vercel.app/api/popular?page=${pageCount}`)
             .then(res => res.json())
             .then(data => {
-                const count = data?.data?.results?.length
-                console.log(count);
-                const page = Math.ceil(count / 3)
-                setPageCount(page)
+                
+                // const count = data?.data?.results?.length
+                console.log(data,pageCount);
+                // const page = Math.ceil(count / 3)
+                // setPageCount(page)
             })
-    })
-    console.log(movie);
+    },[pageCount])
+    // console.log(movie);
 
     const arr = movie?.data?.results?.filter((item) => {
         let popular = 0;
@@ -38,6 +41,7 @@ const Movies = () => {
         }
 
     })
+
     useEffect(() => {
 
         fetch(` https://movie-task.vercel.app/api/search?page=1&query=${searcValue}`)
@@ -54,6 +58,8 @@ const Movies = () => {
 
 
     })
+    // Pagination Button array..
+    const paginationArr=[1, 2, 3, 4, 5]
     // console.log(movie);
     return (
        <>
@@ -99,11 +105,15 @@ const Movies = () => {
 
 
             <div className="pagination mid-container w-full flex justify-center">
+                <button disable={pageCount === 1} >PRE</button>
                 {
-                    [...Array(pageCount).keys()].map(num => 
-                       <span className=''> <button>{num+1}
-                       </button></span>  )
+                   paginationArr.map(num => 
+                     <button className={pageCount===num ? 'selected': ""} onClick={()=>setPageCount(num)}>{num}
+                       </button> )
                 }
+                <button>NEXT</button>
+              
+               
             </div>
 
             </>
